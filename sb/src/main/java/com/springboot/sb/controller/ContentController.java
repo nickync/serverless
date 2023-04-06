@@ -2,6 +2,7 @@ package com.springboot.sb.controller;
 
 import com.springboot.sb.model.Content;
 import com.springboot.sb.repository.ContentCollectionRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class ContentController {
     }
 
     @PutMapping("/{id}")
-    public void update(@RequestBody Content content, @PathVariable Integer id){
+    public void update(@Valid @RequestBody Content content, @PathVariable Integer id){
         if (!repository.existById(id)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Content not found.");
         } else {
